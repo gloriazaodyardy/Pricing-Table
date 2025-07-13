@@ -1,0 +1,11 @@
+@use '../base/color' as c;
+
+.hero {
+  margin: auto;
+  max-width: 29rem;
+  text-align: center;
+  .text-body{
+    // margin-top: 1rem;
+    color: c.$color-gray-medium;
+  }
+}

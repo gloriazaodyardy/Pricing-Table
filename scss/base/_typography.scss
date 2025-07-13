@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url("/fonts/BeVietnamPro-Regular.ttf") format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url("/fonts/BeVietnamPro-Semibold.ttf") format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Be Vietnam Pro';
+    src: url("/fonts/BeVietnamPro-Bold.ttf") format('truetype');
+    font-display: swap;
+}
+
+$font-family: 'Be Vietnam Pro', sans-serif;
+
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+// Font Sizes
+$font-size-heading: 2rem;      // 32px
+$font-size-big-text: 4rem;     // 64px
+$font-size-body: 1rem;         // 16px

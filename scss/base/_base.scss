@@ -1,0 +1,58 @@
+@use 'typography' as t;
+@use 'color' as c;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: t.$font-family;
+}
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+// Heading Style - Bold 700, 32px
+.text-heading {
+  font-weight: t.$font-weight-bold;
+  font-size: t.$font-size-heading;
+}
+// Big Text Style - Semibold 600, 64px
+.text-big {
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-big-text;
+}
+// Body Text Regular - 400, 16px
+.text-body {
+  font-weight: t.$font-weight-regular;
+  font-size: t.$font-size-body;
+}
+// Body Text Semibold - 600, 16px
+.text-body-semibold {
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-body;
+}
+
+#app {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+header,
+main {
+  width: 100%;
+}
+header {
+  padding: 2rem 0;
+  background-color: c.$color-gray-lightest;
+  background-image: url('../resources/bg-pattern.png');
+}
+
+a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
