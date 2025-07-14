@@ -2,9 +2,9 @@
 @use '../base/typography' as t;
 
 .pricing__table {
+  width: auto;
   margin: 2rem;
   display: grid;
-  width: inherit;
   grid-template-columns: auto 1fr;
 
   // STICKY COLUMN (COLUMN 1)
@@ -19,28 +19,57 @@
 
     > div:nth-child(1),
     div:nth-child(3) {
-      content: '';
-      display: flex;
       background-color: c.$color-white;
     }
 
     > div:nth-child(2) {
       text-align: left;
+      width: 7rem;
+      display: grid;
+      max-width: 100%;
       height: fit-content;
-      padding-inline-start: 1rem;
+      align-items: stretch;
       border-radius: 20px 0 0 20px;
       background-color: c.$color-gray-light;
+
       > * {
+        overflow: hidden;
+        padding-inline: 1rem;
+        display: -webkit-box;
         -webkit-line-clamp: 1;
+        word-wrap: break-word;
+        word-break: break-word;
+        box-sizing: border-box;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+      }
+    }
+    @media (min-width: 768px) {
+      > div:nth-child(2) {
+        width: auto;
+
+        > * {
+          display: flex;
+          justify-content: left;
+        }
       }
     }
   }
 
-  &__sticky > div:nth-child(2) *,
+  &__sticky > div:nth-child(2) > *,
   &__scroll > &__scroll__details > div > * {
-    line-height: normal;
+    height: 2.8rem;
+    line-height: 1.5;
     padding-block: 1rem;
     border-bottom: 1px solid c.$color-gray-transparent;
+  }
+
+  @media (min-width: 768px) {
+    &__sticky > div:nth-child(2) > *,
+    &__scroll > &__scroll__details > div > * {
+      height: max-content;
+      line-height: normal;
+    }
   }
 
   // SCROLLABLE COLUMNS (COLUMN 2-5)
@@ -73,8 +102,12 @@
 
     &__plan {
       > div {
-        padding-inline: 1.5rem;
         padding-block-start: 1.5rem;
+
+        @media (min-width: 768px) {
+          padding-inline: 1rem;
+        }
+
         &:nth-child(3) {
           border-radius: 20px 20px 0 0;
           > p:nth-child(1) {
