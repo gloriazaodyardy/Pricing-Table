@@ -52,7 +52,7 @@ main, footer {
 }
 
 header {
-  padding: 2rem 0;
+  padding: 3rem 0;
   background-color: oklch(98.415% 0.00352 248.585);
   background-image: url("../resources/bg-pattern.png");
 }
@@ -70,7 +70,7 @@ footer {
 
 .pricing__table {
   width: auto;
-  margin: 2rem;
+  margin: 3rem 2rem;
   display: grid;
   grid-template-columns: auto 1fr;
 }
