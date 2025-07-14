@@ -2,94 +2,116 @@
 @use '../base/typography' as t;
 
 .pricing__table {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  overflow: hidden;
-  text-align: center;
   margin: 2rem;
+  display: grid;
+  width: inherit;
+  grid-template-columns: auto 1fr;
 
-  &__plan,
-  &__details,
-  &__cta {
-    width: 100%;
+  // STICKY COLUMN (COLUMN 1)
+  &__sticky {
+    left: 0;
+    top: 0;
+    z-index: 10;
     display: grid;
-    grid-template-columns: repeat(5, minmax(120px, 1fr));
-    > *:nth-child(4) {
+    position: sticky;
+    height: fit-content;
+    grid-template-rows: 172px auto 64px;
+
+    > div:nth-child(1),
+    div:nth-child(3) {
+      content: '';
+      display: flex;
+      background-color: c.$color-white;
+    }
+
+    > div:nth-child(2) {
+      text-align: left;
+      height: fit-content;
+      padding-inline-start: 1rem;
+      border-radius: 20px 0 0 20px;
+      background-color: c.$color-gray-light;
+      > * {
+        -webkit-line-clamp: 1;
+      }
+    }
+  }
+
+  &__sticky > div:nth-child(2) *,
+  &__scroll > &__scroll__details > div > * {
+    line-height: normal;
+    padding-block: 1rem;
+    border-bottom: 1px solid c.$color-gray-transparent;
+  }
+
+  // SCROLLABLE COLUMNS (COLUMN 2-5)
+  &__scroll {
+    display: grid;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+    grid-template-rows: auto auto auto;
+
+    > div {
+      display: grid;
+      text-align: center;
+      min-width: max-content;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      > * {
+        scroll-snap-align: start;
+      }
+    }
+
+    &__plan > div:nth-child(3),
+    &__details > div:nth-child(3),
+    &__cta > :nth-child(3) {
       color: c.$color-white;
     }
-  }
-  &__plan,
-  &__details {
-    > *:nth-child(4) {
+    &__plan > div:nth-child(3),
+    &__details > div:nth-child(3) {
       background-color: c.$color-primary-dark;
     }
-  }
-  &__plan {
-    > div {
-      padding-block: 2rem;
-      border-radius: 20px 20px 0 0;
-      &:nth-child(4) > p:nth-child(1) {
-        display: flex;
-        width: 6rem;
-        margin: 0 auto;
-        text-align: center;
-        justify-content: center;
-        border-radius: 1rem;
-        background-color: c.$color-blue-primary;
-      }
-      p:nth-child(2) {
-        font-size: t.$font-size-big-text;
+
+    &__plan {
+      > div {
+        padding-inline: 1.5rem;
+        padding-block-start: 1.5rem;
+        &:nth-child(3) {
+          border-radius: 20px 20px 0 0;
+          > p:nth-child(1) {
+            width: 6rem;
+            margin: 0 auto;
+            display: flex;
+            text-align: center;
+            border-radius: 1rem;
+            justify-content: center;
+            background-color: c.$color-blue-primary;
+          }
+        }
+        > p:nth-child(2) {
+          font-size: t.$font-size-big-text;
+        }
       }
     }
-  }
-  &__details {
-    img {
-      display: block;
-      margin: 0 auto;
+
+    &__details > div > * {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
-    > div {
-      &:nth-child(1) {
-        text-align: left;
-        padding-left: 1rem;
-        border-radius: 20px 0 0 20px;
-        background-color: c.$color-gray-light;
-      }
-      > * {
-        line-height: normal;
-        padding-block: 1.5rem;
-        border-bottom: 1px solid c.$color-gray-transparent;
-      }
-      > div:nth-child(n + 2):nth-child(-n + 5) {
+
+    &__cta {
+      a {
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
-        width: 100%;
+        text-decoration: none;
       }
-    }
-  }
-  &__cta {
-    > a {
-      padding-block: 2rem;
-      &:nth-child(4) {
+      :nth-child(3) {
+        padding-block: 1rem;
         border-radius: 0 0 20px 20px;
         background-color: c.$color-brown-dark;
-      }
-    }
-  }
-  @for $i from 1 through 5 {
-    @if $i == 1 {
-      &__plan > div:nth-child(#{$i}),
-      &__details > div:nth-child(#{$i}),
-      &__cta > div:nth-child(#{$i}) {
-        left: 0;
-        z-index: 2;
-        position: sticky;
-      }
-    } @else {
-      &__plan > div:nth-child(#{$i}),
-      &__details > div:nth-child(#{$i}),
-      &__cta > div:nth-child(#{$i}) {
-        min-width: 200px;
       }
     }
   }

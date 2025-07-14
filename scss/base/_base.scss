@@ -34,13 +34,8 @@ body {
   font-size: t.$font-size-body;
 }
 
-#app {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
 header,
-main {
+main, footer {
   width: 100%;
 }
 header {
@@ -48,11 +43,13 @@ header {
   background-color: c.$color-gray-lightest;
   background-image: url('../resources/bg-pattern.png');
 }
-
-a {
+main{
   display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
-  text-decoration: none;
+}
+
+footer{
+  text-align: center;
 }
